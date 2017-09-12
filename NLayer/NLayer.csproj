@@ -1,15 +1,63 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
-    <TargetFrameworks>netstandard1.3;net35</TargetFrameworks>
-    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>Mark Heath, Andrew Ward</Authors>
-    <Version>1.12.0</Version>
-    <PackageLicenseUrl>https://github.com/naudio/NLayer/blob/master/LICENSE</PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/naudio/NLayer</PackageProjectUrl>
-    <Description>Fully Managed MPEG 1 &amp; 2 Decoder for Layers 1, 2, &amp; 3</Description>
-    <PackageTags>audio csharp mp3</PackageTags>
-    <Company />
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CF18CBD3-91A7-4917-B997-DBA89AE678CC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NLayer</RootNamespace>
+    <AssemblyName>NLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Decoder\BitReservoir.cs" />
+    <Compile Include="Decoder\FrameBase.cs" />
+    <Compile Include="Decoder\Huffman.cs" />
+    <Compile Include="Decoder\ID3Frame.cs" />
+    <Compile Include="Decoder\LayerDecoderBase.cs" />
+    <Compile Include="Decoder\LayerIDecoder.cs" />
+    <Compile Include="Decoder\LayerIIDecoder.cs" />
+    <Compile Include="Decoder\LayerIIDecoderBase.cs" />
+    <Compile Include="Decoder\LayerIIIDecoder.cs" />
+    <Compile Include="Decoder\MpegFrame.cs" />
+    <Compile Include="Decoder\MpegStreamReader.cs" />
+    <Compile Include="Decoder\RiffHeaderFrame.cs" />
+    <Compile Include="Decoder\VBRInfo.cs" />
+    <Compile Include="Enums.cs" />
+    <Compile Include="IMpegFrame.cs" />
+    <Compile Include="MpegFile.cs" />
+    <Compile Include="MpegFrameDecoder.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
